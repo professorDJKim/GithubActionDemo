@@ -7,16 +7,32 @@ on:
 jobs:
   SE333_SECURITY_JOB:
      runs-on: ubuntu-latest
-     steps:
-         - name: Checkout repository
-           uses: actions/checkout@v4
+     permissions:
+       security-events: write
+       actions: read
+       contents: read
 
-       # Initializes CodeQL tools and creates a codebase for analysis.
-         - name: Initialize CodeQL
-           uses: github/codeql-action/init@v3
-           with:
-             languages: java
-             dependency-caching: true
+     steps:
+       - name: Checkout repository
+         uses: actions/checkout@v4
+
+       - name: Initialize CodeQL
+         uses: github/codeql-action/init@v3
+         with:
+           languages: java
+           build-mode: manual  # Manual mode to control Maven build
+
+       - name: Set up JDK
+         uses: actions/setup-java@v3
+         with:
+           distribution: 'temurin'
+           java-version: '21'  # Adjust based on your project
+
+       - name: Build with Maven
+         run: mvn clean install -DskipTests  # Skips tests for faster analysis
+
+       - name: Perform CodeQL Analysis
+         uses: github/codeql-action/analyze@v3
 
 
 

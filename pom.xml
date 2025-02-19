@@ -13,6 +13,31 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <enableRulesSummary>false</enableRulesSummary>
+                    <failOnViolation>false</failOnViolation>
+                    <consoleOutput>false</consoleOutput>
+                    <outputDirectory>${project.build.directory}/checkstyle</outputDirectory>
+                    <outputFile>${project.build.directory}/checkstyle/checkstyle-result.xml</outputFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>checkstyle</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>org.mockito</groupId>

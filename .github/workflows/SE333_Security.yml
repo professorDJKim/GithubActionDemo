@@ -1,4 +1,4 @@
-name: SE333_CI
+name: SE333_Security
 on: 
   push:
     branches: 
@@ -11,8 +11,11 @@ jobs:
        - name: checkout-repo
          uses: actions/checkout@v4
 
-       - name: Intialize codeql
+       - name: Intialize CodeQL
          uses: github/codeql-action/init@v3
+
+       - name: Autobuild
+         uses: github/codeql-action/autobuild@v3
 
        - name: Perform CodeQL Analysis
          uses: github/codeql-action/analyze@v3

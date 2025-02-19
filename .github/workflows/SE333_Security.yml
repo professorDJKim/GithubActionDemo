@@ -26,6 +26,9 @@ jobs:
          with:
            languages: 'java'
 
+       - name: run maven
+         run: mvn package
+
        - name: Perform CodeQL Analysis
          uses: github/codeql-action/analyze@v3
 

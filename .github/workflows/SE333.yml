@@ -5,10 +5,10 @@ on:
       - main
     
 jobs: 
-  MyFirstJob:
+  SE333Job:
      runs-on: ubuntu-latest
      steps:
-       - run: echo "hello world"
+       - run: echo "Assignment job"
        
        - name: Checkout
          uses: actions/checkout@v4.2.2

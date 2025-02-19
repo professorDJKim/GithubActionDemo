@@ -1,0 +1,25 @@
+name: SE333_CI
+on: 
+  push:
+    branches: 
+      - feature
+
+jobs: 
+  SE333Job:
+     runs-on: ubuntu-latest
+     steps:
+       - name: checkout-repo
+         uses: actions/checkout@v4
+
+       - name: setupJava
+         uses: actions/setup-java@v4
+         with:
+           java-version: '11'
+           distribution: 'temurin'
+           architecture: x64
+
+       - name: run maven
+         run: mvn package
+
+
+

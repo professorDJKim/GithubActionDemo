@@ -2,7 +2,7 @@ name: SE333
 on: 
   push:
     branches: 
-      - src.main.java.org.example.main
+      - main
     
 jobs: 
   MyFirstJob:

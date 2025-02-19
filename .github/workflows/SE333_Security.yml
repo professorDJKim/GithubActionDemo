@@ -4,18 +4,25 @@ on:
     branches: 
       - feature
 
-jobs: 
-  SE333Job:
+jobs:
+  SE333_SECURITY_JOB:
      runs-on: ubuntu-latest
      steps:
        - name: checkout-repo
          uses: actions/checkout@v4
 
+       - name: setupJava
+         uses: actions/setup-java@v4
+         with:
+           java-version: '21'
+           distribution: 'temurin'
+           architecture: x64
+           cache: maven
+       - name: run maven
+         run: mvn package
+
        - name: Intialize CodeQL
          uses: github/codeql-action/init@v3
-
-       - name: Autobuild
-         uses: github/codeql-action/autobuild@v3
 
        - name: Perform CodeQL Analysis
          uses: github/codeql-action/analyze@v3

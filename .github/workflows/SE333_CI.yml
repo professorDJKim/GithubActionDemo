@@ -5,7 +5,7 @@ on:
       - feature
 
 jobs: 
-  SE333Job:
+  SE333_CI_JOB:
      runs-on: ubuntu-latest
      steps:
        - name: checkout-repo

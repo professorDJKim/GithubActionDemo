@@ -1,0 +1,21 @@
+name: SE333
+on: 
+  push:
+    branches: 
+      - src.main.java.org.example.main
+    
+jobs: 
+  MyFirstJob:
+     runs-on: ubuntu-latest
+     steps:
+       - run: echo "hello world"
+       
+       - name: Checkout
+         uses: actions/checkout@v4.2.2
+
+       - name: print files
+         run: |
+           echo "The repository ${{github.repository}} contains the following files: "
+           tree 
+       
+  

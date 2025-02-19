@@ -11,10 +11,11 @@ jobs:
        - name: checkout-repo
          uses: actions/checkout@v4
 
-       - name: initialize codeql
+       - name: Intialize codeql
          uses: github/codeql-action/init@v3
 
-
+       - name: Perform CodeQL Analysis
+         uses: github/codeql-action/analyze@v3
 
 
 

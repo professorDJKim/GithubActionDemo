@@ -19,7 +19,7 @@ jobs:
            architecture: x64
 
        - name: run maven
-         run: mvn package
+         run: mvn test
 
 
 

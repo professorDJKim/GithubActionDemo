@@ -19,9 +19,6 @@ jobs:
            architecture: x64
            cache: maven
 
-       - name: run static analysis
-         run: mvn test
-
        - name: run maven
          run: mvn test
 

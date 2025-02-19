@@ -1,0 +1,21 @@
+name: SE333_CI
+on: 
+  push:
+    branches: 
+      - feature
+
+jobs: 
+  SE333Job:
+     runs-on: ubuntu-latest
+     steps:
+       - name: checkout-repo
+         uses: actions/checkout@v4
+
+       - name: initialize codeql
+         run: github/codeql-action/init@v3
+
+
+
+
+
+

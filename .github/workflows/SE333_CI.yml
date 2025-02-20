@@ -19,7 +19,13 @@ jobs:
            architecture: x64
            cache: maven
 
-       - name: run maven
+       - name: Install Linter
+         run: sudo apt-get install -y checkstyle
+
+       - name: Run Checkstyle
+         run: mvn checkstyle:check
+
+       - name: Run Maven
          run: mvn test
 
 

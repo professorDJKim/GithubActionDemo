@@ -23,9 +23,15 @@ jobs:
          run: sudo apt-get install -y checkstyle
 
        - name: Run Checkstyle
-         run: mvn checkstyle:check -Dcheckstyle.failOnViolation=false
+         run: mvn checkstyle:check -Dcheckstyle.failOnViolation=false > checkstyle-result.txt
 
-       - name: Run Maven
+       - name: Upload Checkstyle Result
+         uses: actions/upload-artifact@v4
+         with:
+           name: checkstyle-result
+           path: checkstyle-result.txt
+
+       - name: Run Maven Test
          run: mvn test
 
 

@@ -234,8 +234,4 @@ class BarnesAndNobleTest {
         verify(bookProcess,times(1)).buyBook(SpiderMan,0);
     }
 
-    @Test
-    public void test(){
-
-    }
 }

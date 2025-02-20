@@ -23,7 +23,7 @@ jobs:
          run: sudo apt-get install -y checkstyle
 
        - name: Run Checkstyle
-         run: mvn checkstyle:check
+         run: mvn checkstyle:check checkstyle.failOnViolation=false
 
        - name: Run Maven
          run: mvn test

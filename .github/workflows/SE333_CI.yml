@@ -1,0 +1,58 @@
+name: SE333_CI
+on: 
+  push:
+    branches: 
+      - feature
+
+jobs: 
+  SE333_CI_JOB:
+     runs-on: ubuntu-latest
+     steps:
+       - name: checkout-repo
+         uses: actions/checkout@v4
+
+       - name: setupJava
+         uses: actions/setup-java@v4
+         with:
+           java-version: '21'
+           distribution: 'temurin'
+           architecture: x64
+           cache: maven
+
+       - name: Install Linter
+         run: sudo apt-get install -y checkstyle
+
+       - name: Run Checkstyle
+         run: mvn checkstyle:check -Dcheckstyle.failOnViolation=false > checkstyle-result.txt
+
+       - name: Upload Checkstyle Result
+         uses: actions/upload-artifact@v4
+         with:
+           name: checkstyle-result
+           path: checkstyle-result.txt
+
+       - name: Run Maven Test
+         run: mvn test
+
+       - name: Jacoco Report
+         uses: actions/upload-artifact@v4
+         with:
+           name: jaoco-report
+           path: |
+             ${{ github.workspace }}/target/site/jacoco/jacoco.xml
+             ${{ github.workspace }}/target/site/jacoco/index.xml
+
+       - name: Add coverage to PR
+         id: jacoco
+         uses: madrapps/jacoco-report@v1.6.1
+         with:
+           paths: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
+           token: ${{ secrets.GITHUB_TOKEN }}
+           min-coverage-overall: 80
+           min-coverage-changed-files: 60
+           title: '# :recycle: Coverage Report'
+           update-comment: true
+           pass-emoji: ':green_circle:'
+           fail-emoji: ':red_circle:'
+
+
